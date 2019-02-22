@@ -32,15 +32,28 @@
             <li v-for="detail in details">{{ detail }}</li>
           </ul>
           <p>{{ desc }}</p>
-          <strong>Sizes</strong><br />
+          <strong>Sizes</strong>
           <ul>
             <li v-for="size in sizes">{{ size }}</li>
           </ul>
-          <strong>Colors</strong><br />
-          <div v-for="variant in variants" :key="variant.variantId">
-            <p>{{ variant.variantColor }}</p>
-          </div>
+          <strong>Colors</strong>
+          <ul>
+            <!-- @ is short for v-on -->
+            <!-- v-on triggers methods defined in the methods object within the Vue instance -->
+            <li
+              v-for="variant in variants"
+              :key="variant.variantId"
+              @mouseover="updateProduct(variant.variantImage)"
+            >
+              {{ variant.variantColor }}
+            </li>
+          </ul>
           <a :href="link" target="_blank">Click here for more socks</a>
+          <button @click="addToCart">Add to Cart</button>
+          <button @click="removeFromCart">Remove from Cart</button>
+          <div class="cart">
+            <p>Cart({{ cart }})</p>
+          </div>
         </div>
       </div>
     </div>
