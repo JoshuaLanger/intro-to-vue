@@ -19,7 +19,8 @@
           <img :src="image" :alt="alt" />
         </div>
         <div class="product-info">
-          <h1>{{ product }}</h1>
+          <!-- The title comes from the data's computed properties, found in the :computed object -->
+          <h1>{{ title }}</h1>
           <!-- v-if and v-else will render elements conditionally, based on how the expression value evaluates -->
           <p v-if="inventory > 10">In Stock</p>
           <p v-else-if="inventory <= 10 && inventory > 0">Almost Sold Out</p>
@@ -28,7 +29,7 @@
           <p v-else :class="{'line-through': inventory === 0}">Out of Stock</p>
           <!-- Displays 'On sale!' when onSale is true -->
           <!-- v-show will always render the element, but will hide the display when the expression is false -->
-          <strong v-show="onSale">On Sale!</strong>
+          <strong v-show="onSale">{{ onSaleString }}</strong>
           <!-- v-for reads from an array in the data object and prints out an li element for each one, though only one is written here -->
           <ul>
             <li v-for="detail in details">{{ detail }}</li>
@@ -45,9 +46,9 @@
             <li
               class="color-box"
               :style="{backgroundColor: variant.variantColor}"
-              v-for="variant in variants"
+              v-for="(variant, index) in variants"
               :key="variant.variantId"
-              @mouseover="updateProduct(variant.variantImage)"
+              @mouseover="updateProduct(index)"
             ></li>
           </ul>
           <a :href="link" target="_blank">Click here for more socks</a>

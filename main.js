@@ -1,9 +1,10 @@
 var app = new Vue({
   el: '#app',
   data: {
+    brand: 'Vue Mastery',
     product: 'Socks',
     desc: `The best socks you'll find in town!`,
-    image: './socks_green.jpeg',
+    selectedVariant: 0,
     alt: 'Green socks',
     link: 'https://bombas.com/collections/mens-socks',
     inventory: 20,
@@ -14,12 +15,14 @@ var app = new Vue({
       {
         variantId: 234,
         variantColor: 'Green',
-        variantImage: './socks_green.jpeg'
+        variantImage: './socks_green.jpeg',
+        variantQuantity: 12
       },
       {
         variantId: 235,
         variantColor: 'Blue',
-        variantImage: './socks__blue.jpeg'
+        variantImage: './socks__blue.jpeg',
+        variantQuantity: 8
       }
     ],
     cart: 0
@@ -35,8 +38,22 @@ var app = new Vue({
       this.cart -= 1;
       this.inventory += 1;
     },
-    updateProduct: function(variantImage) {
-      this.image = variantImage;
+    updateProduct: function(index) {
+      this.selectedVariant = index;
+    }
+  },
+  computed: {
+    title() {
+      return this.brand + ' ' + this.product;
+    },
+    image() {
+      return this.variants[this.selectedVariant].variantImage;
+    },
+    onSaleString() {
+      return this.title + ' ' + 'are on sale!';
+    },
+    inStock() {
+      return this.variants[this.selectedVariant].variantQuantity;
     }
   }
 });
