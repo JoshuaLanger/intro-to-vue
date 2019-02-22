@@ -4,12 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="product_style.css" />
     <title>Intro to Vue</title>
   </head>
   <body>
+    <div class="nav-bar"></div>
     <div id="app">
-      <h1>{{ product }}</h1>
-      <p>{{ desc }}</p>
+      <div class="product">
+        <div class="product-image">
+          <!-- v-bind dynamically binds an attribute to an expression -->
+          <!-- the attribute's value is pulled from the Vue instance binded to this App element -->
+          <!-- :src is short for v-bind:src -->
+          <!-- same for :alt and any other attribute -->
+          <img :src="image" :alt="alt" />
+        </div>
+        <div class="product-info">
+          <h1>{{ product }}</h1>
+          <p>{{ desc }}</p>
+          <a :href="link" target="_blank"
+            >Click here for more socks</a
+          >
+        </div>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="main.js"></script>
