@@ -7,6 +7,18 @@ var app = new Vue({
     alt: 'Green socks',
     link: 'https://bombas.com/collections/mens-socks',
     inventory: 100,
-    onSale: true
+    onSale: true,
+    details: ['80% cotton', '20% polyester', '100% comfort'],
+    sizes: ['S', 'M', 'L', 'XL'],
+    variants: [
+      {
+        variantId: 234,
+        variantColor: 'Green'
+      },
+      {
+        variantId: 235,
+        variantColor: 'Blue'
+      }
+    ]
   }
 });
