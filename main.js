@@ -5,6 +5,8 @@ var app = new Vue({
     desc: `The best socks you'll find in town!`,
     image: './socks_green.jpeg',
     alt: 'Green socks',
-    link: 'https://bombas.com/collections/mens-socks'
+    link: 'https://bombas.com/collections/mens-socks',
+    inventory: 100,
+    onSale: true
   }
 });
