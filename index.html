@@ -23,7 +23,9 @@
           <!-- v-if and v-else will render elements conditionally, based on how the expression value evaluates -->
           <p v-if="inventory > 10">In Stock</p>
           <p v-else-if="inventory <= 10 && inventory > 0">Almost Sold Out</p>
-          <p v-else>Out of Stock</p>
+          <!-- Vue can bind a class conditionally, based on a given expression -->
+          <!-- :class="{<className>: <expression>}" -->
+          <p v-else :class="{'line-through': inventory === 0}">Out of Stock</p>
           <!-- Displays 'On sale!' when onSale is true -->
           <!-- v-show will always render the element, but will hide the display when the expression is false -->
           <strong v-show="onSale">On Sale!</strong>
@@ -41,15 +43,21 @@
             <!-- @ is short for v-on -->
             <!-- v-on triggers methods defined in the methods object within the Vue instance -->
             <li
+              class="color-box"
+              :style="{backgroundColor: variant.variantColor}"
               v-for="variant in variants"
               :key="variant.variantId"
               @mouseover="updateProduct(variant.variantImage)"
-            >
-              {{ variant.variantColor }}
-            </li>
+            ></li>
           </ul>
           <a :href="link" target="_blank">Click here for more socks</a>
-          <button @click="addToCart">Add to Cart</button>
+          <button
+            @click="addToCart"
+            :disabled="inventory === 0"
+            :class="{disabledButton: inventory === 0}"
+          >
+            Add to Cart
+          </button>
           <button @click="removeFromCart">Remove from Cart</button>
           <div class="cart">
             <p>Cart({{ cart }})</p>
